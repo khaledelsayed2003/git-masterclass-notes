@@ -722,6 +722,3 @@ Understanding internals, not commands.
 
 ---
 
-
-
-Just tell me.
