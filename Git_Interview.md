@@ -1,149 +1,222 @@
-# Git & GitHub – Interview Questions & Answers (Complete Guide)
+# 🚀 Git & GitHub – 100 Interview Questions & Answers (Complete Guide)
 
-## 1. What is a Version Control System (VCS)?
-
-A Version Control System tracks changes in source code over time.
-It allows developers to save versions, revert changes, and collaborate safely.
+> A practical, internals-aware guide for **students, developers, and interview preparation**
+> Covers **Git fundamentals, internals, branching, undoing, remotes, collaboration, and GitHub workflows**
 
 ---
 
-## 2. What is Git?
+## 📘 Fundamentals
 
-Git is a **distributed version control system** that stores the complete history of a project locally and tracks changes using snapshots.
+### 1. What is a Version Control System (VCS)?
 
----
-
-## 3. What is GitHub?
-
-GitHub is a **hosting and collaboration platform** for Git repositories.
-It provides remote storage, pull requests, issues, and team collaboration.
+A VCS tracks changes in files over time, allowing you to save versions, revert changes, and collaborate safely.
 
 ---
 
-## 4. Difference between Git and GitHub?
+### 2. What is Git?
 
-- **Git** → local tool for version control
-- **GitHub** → remote platform to host and share Git repositories
-
----
-
-## 5. What are the types of VCS?
-
-- **Local VCS** – versions stored locally
-- **Centralized VCS** – single central server
-- **Distributed VCS** – full copy for each user (Git)
+Git is a **distributed version control system** that tracks changes using snapshots and stores the full history locally.
 
 ---
 
-## 6. How does Git detect file changes?
+### 3. What is GitHub?
 
-Git calculates a **SHA-1 hash** based on file content, type, and size.
-If the hash changes, Git knows the file changed.
-
----
-
-## 7. What is a Git SHA?
-
-A Git SHA is a 40-character hexadecimal hash (160 bits) that uniquely identifies objects (commits, trees, blobs).
+GitHub is a **remote hosting and collaboration platform** for Git repositories.
 
 ---
 
-## 8. Explain Git’s three-tree architecture.
+### 4. Git vs GitHub?
 
-1. **Working Directory** – your actual files
-2. **Staging Area (Index)** – files prepared for commit
-3. **Repository** – committed snapshots
-
----
-
-## 9. What happens internally when you commit?
-
-Git creates:
-
-- **Blob** → file content
-- **Tree** → directory structure
-- **Commit** → metadata + pointer to tree
+* **Git** → local version control tool
+* **GitHub** → online platform to host and share Git repositories
 
 ---
 
-## 10. What is a Blob in Git?
+### 5. Types of Version Control Systems?
 
-A Blob stores **file content only**, not the filename or path.
-
----
-
-## 11. What is a Tree in Git?
-
-A Tree represents a directory and maps filenames to blob hashes.
+* **Local VCS** – versions stored locally
+* **Centralized VCS** – one central server
+* **Distributed VCS** – full copy per developer (Git)
 
 ---
 
-## 12. What is a Commit in Git?
+### 6. Why is Git distributed?
 
-A Commit is a snapshot that points to a tree and stores metadata (author, message, parent, date).
-
----
-
-## 13. What is a Repository?
-
-A repository is a project folder managed by Git, containing files and a hidden `.git` directory with all history.
+Each developer has the **full history**, can work offline, and sync later.
 
 ---
 
-## 14. What is HEAD?
+### 7. What is a repository?
 
-HEAD is a pointer that shows **which branch and commit you are currently on**.
-
----
-
-## 15. What is a Branch?
-
-A branch is a **movable pointer** to a commit, allowing parallel development.
+A repository is a project folder managed by Git, containing a hidden `.git` directory with full history.
 
 ---
 
-## 16. Difference between branch and tag?
+### 8. What does `git init` do?
 
-- **Branch** → moves forward with new commits
-- **Tag** → fixed pointer used to mark releases
-
----
-
-## 17. What is `git status` used for?
-
-Shows the current state of files (untracked, modified, staged).
+Creates a new local Git repository by adding a `.git` folder.
 
 ---
 
-## 18. What does `git add` do?
+### 9. What is inside `.git`?
 
-Moves changes from the working directory to the staging area.
-
----
-
-## 19. What does `git commit` do?
-
-Creates a snapshot of staged changes in the local repository.
+Git objects, refs, HEAD, index, configuration, and history.
 
 ---
 
-## 20. What is `git diff`?
+### 10. Git is best described as what?
 
-Shows differences between:
-
-- Working Directory and Staging Area
+A **database of snapshots**, not a set of files.
 
 ---
 
-## 21. What is `git diff --staged`?
+## 🧠 Git Internals
 
-Shows differences between:
+### 11. How does Git detect file changes?
 
-- Staging Area and Last Commit
+By recalculating a **SHA-1 hash** based on file content, size, and type.
 
 ---
 
-## 22. How do you undo changes in the working directory?
+### 12. What is a Git SHA?
+
+A 40-character hexadecimal hash (160 bits) uniquely identifying Git objects.
+
+---
+
+### 13. What are Git objects?
+
+* **Blob**
+* **Tree**
+* **Commit**
+* **Tag**
+
+---
+
+### 14. What is a Blob?
+
+Stores **file content only** (no filename or path).
+
+---
+
+### 15. What is a Tree?
+
+Represents a directory structure and maps filenames to blob hashes.
+
+---
+
+### 16. What is a Commit?
+
+A snapshot pointing to a tree and containing metadata (author, message, parent).
+
+---
+
+### 17. What objects are created in every commit?
+
+* 1 Commit
+* 1+ Trees
+* 0+ Blobs (reused if unchanged)
+
+---
+
+### 18. Why are blobs reused?
+
+Same content → same SHA → no duplication.
+
+---
+
+### 19. What is a Tag?
+
+A fixed pointer to a commit, usually for releases.
+
+---
+
+### 20. Branch vs Tag?
+
+* Branch → moves forward
+* Tag → fixed reference
+
+---
+
+## 🌳 Three-Tree Architecture
+
+### 21. What are Git’s three trees?
+
+* **Working Directory**
+* **Staging Area (Index)**
+* **Repository**
+
+---
+
+### 22. What does `git add` do?
+
+Moves changes from Working Directory to Staging Area.
+
+---
+
+### 23. What does `git commit` do?
+
+Creates a snapshot of staged changes in the repository.
+
+---
+
+### 24. What does `git status` show?
+
+State of files: untracked, modified, staged.
+
+---
+
+### 25. What does `git status -s` show?
+
+Short status:
+
+* Red M → modified (not staged)
+* Green M → staged
+
+---
+
+## 🔍 Inspecting Changes
+
+### 26. What does `git diff` show?
+
+Differences between **Working Directory** and **Staging Area**.
+
+---
+
+### 27. What does `git diff --staged` show?
+
+Differences between **Staging Area** and **Last Commit**.
+
+---
+
+### 28. How to compare two commits?
+
+```bash
+git diff A..B
+```
+
+Shows changes from A → B.
+
+---
+
+### 29. What does `git show` do?
+
+Displays a commit and its exact changes.
+
+---
+
+### 30. How to view commit history?
+
+```bash
+git log
+git log --oneline
+```
+
+---
+
+## 🔁 Undoing Changes
+
+### 31. Undo working directory changes?
 
 ```bash
 git restore <file>
@@ -151,7 +224,7 @@ git restore <file>
 
 ---
 
-## 23. How do you unstage a file?
+### 32. Unstage a file?
 
 ```bash
 git restore --staged <file>
@@ -159,7 +232,7 @@ git restore --staged <file>
 
 ---
 
-## 24. How do you remove a tracked file without deleting it?
+### 33. Remove a tracked file without deleting it?
 
 ```bash
 git rm --cached <file>
@@ -167,7 +240,7 @@ git rm --cached <file>
 
 ---
 
-## 25. How do you remove the last commit locally?
+### 34. Remove last commit locally?
 
 ```bash
 git reset --hard HEAD~1
@@ -175,17 +248,32 @@ git reset --hard HEAD~1
 
 ---
 
-## 26. How do you remove a commit from GitHub?
+### 35. Remove commit from GitHub?
 
 ```bash
 git push --force-with-lease
 ```
 
-⚠️ Rewrites history — use carefully.
+⚠️ Rewrites history.
 
 ---
 
-## 27. How do you recover a deleted commit?
+### 36. Safe alternative to delete a commit?
+
+```bash
+git revert <commit>
+```
+
+---
+
+### 37. reset vs revert?
+
+* **reset** → rewrites history
+* **revert** → safe for shared repos
+
+---
+
+### 38. Recover a deleted commit?
 
 ```bash
 git reflog
@@ -194,48 +282,53 @@ git reset --hard <sha>
 
 ---
 
-## 28. What is `git revert`?
+### 39. Amend last commit message?
 
-Creates a **new commit** that undoes a previous commit **without rewriting history**.
-
----
-
-## 29. Difference between `git reset` and `git revert`?
-
-- `reset` → rewrites history
-- `revert` → safe for shared repos
+```bash
+git commit --amend -m "new message"
+```
 
 ---
 
-## 30. What is `git show`?
+### 40. Commit and add in one command?
 
-Displays commit details and the exact changes it introduced.
-
----
-
-## 31. What is fast-forward merge?
-
-When the target branch has no new commits, Git simply moves the pointer forward.
+```bash
+git commit -am "message"
+```
 
 ---
 
-## 32. What is divergent history?
+## 🌿 Branching
 
-When two branches both have new commits after branching.
+### 41. What is HEAD?
 
----
-
-## 33. What is a 3-way merge?
-
-A merge that uses:
-
-- Common ancestor
-- Latest commit on each branch
-  Creates a new merge commit.
+A pointer showing the current branch and commit.
 
 ---
 
-## 34. How do you create and switch to a branch?
+### 42. What is a branch?
+
+A movable pointer to a commit for parallel development.
+
+---
+
+### 43. Create a branch?
+
+```bash
+git branch feature
+```
+
+---
+
+### 44. Switch branches?
+
+```bash
+git switch feature
+```
+
+---
+
+### 45. Create & switch?
 
 ```bash
 git switch -c feature
@@ -243,16 +336,36 @@ git switch -c feature
 
 ---
 
-## 35. How do you merge a branch?
+### 46. What files do you see in your editor?
 
-```bash
-git switch main
-git merge feature
-```
+The commit that HEAD points to.
 
 ---
 
-## 36. How do you delete a merged branch?
+### 47. What is fast-forward merge?
+
+Git moves the branch pointer forward without creating a merge commit.
+
+---
+
+### 48. What is divergent history?
+
+Both branches have new commits after branching.
+
+---
+
+### 49. What is a 3-way merge?
+
+Uses:
+
+* common ancestor
+* branch A
+* branch B
+  Creates a new merge commit.
+
+---
+
+### 50. Delete a merged branch?
 
 ```bash
 git branch -d feature
@@ -260,41 +373,54 @@ git branch -d feature
 
 ---
 
-## 37. What are remotes in Git?
+## 🌐 Remotes & Collaboration
 
-Remote repositories are external versions of your repo (e.g. GitHub).
+### 51. What are remotes?
 
----
-
-## 38. What is `origin`?
-
-Default name for the remote repository you cloned from.
+External repositories linked to your local repo.
 
 ---
 
-## 39. What is `git fetch`?
+### 52. What is origin?
 
-Downloads updates **without changing your working directory**.
+Default name for the remote you cloned from.
 
 ---
 
-## 40. What is `git pull`?
-
-Fetches and merges updates immediately.
+### 53. Show remotes?
 
 ```bash
-git pull = git fetch + git merge
+git remote -v
 ```
 
 ---
 
-## 41. When should you prefer fetch over pull?
+### 54. What does `git push` do?
 
-When working in teams and you want to **review changes before merging**.
+Uploads commits to a remote repository.
 
 ---
 
-## 42. How do you see remote branches?
+### 55. What does `git pull` do?
+
+Fetches and merges updates.
+
+---
+
+### 56. What does `git fetch` do?
+
+Downloads updates **without merging**.
+
+---
+
+### 57. pull vs fetch?
+
+* pull = fetch + merge
+* fetch = review first
+
+---
+
+### 58. View remote branches?
 
 ```bash
 git branch -r
@@ -302,7 +428,7 @@ git branch -r
 
 ---
 
-## 43. How do you push a new branch to GitHub?
+### 59. Push a new branch?
 
 ```bash
 git push -u origin branch_name
@@ -310,29 +436,78 @@ git push -u origin branch_name
 
 ---
 
-## 44. What does `-u` mean?
+### 60. What does `-u` mean?
 
-Sets an **upstream tracking branch**.
+Sets upstream tracking branch.
 
 ---
 
-## 45. How do you test a friend’s branch locally?
+## 🤝 GitHub Workflows
+
+### 61. Clone vs Download ZIP?
+
+* Clone → full history
+* ZIP → snapshot only
+
+---
+
+### 62. What is fork?
+
+A GitHub copy of a repository under your account.
+
+---
+
+### 63. Why fork?
+
+No write access to original repo.
+
+---
+
+### 64. origin vs upstream?
+
+* origin → your fork
+* upstream → original repo
+
+---
+
+### 65. Keep fork updated?
 
 ```bash
-git fetch origin
-git checkout development
-git pull origin development
+git fetch upstream
+git merge upstream/main
 ```
 
 ---
 
-## 46. Why must you commit before merging?
+### 66. What is a Pull Request (PR)?
 
-Because Git merges **commits**, not uncommitted changes.
+A request to merge your branch into another repo.
 
 ---
 
-## 47. How do you rename `master` to `main`?
+### 67. Should you work on main?
+
+❌ No. Always use feature branches.
+
+---
+
+### 68. Why commit before merging?
+
+Git merges **commits**, not uncommitted changes.
+
+---
+
+### 69. Test a friend’s branch locally?
+
+```bash
+git fetch origin
+git checkout dev
+git pull origin dev
+```
+
+---
+
+### 70. Rename master to main?
 
 ```bash
 git branch -m master main
@@ -342,29 +517,211 @@ git push origin --delete master
 
 ---
 
-## 48. How are GitHub contributions counted?
+## ⚙️ Configuration
 
-- Each commit = one contribution
-- Commit date matters, not push date
+### 71. Set username?
 
----
-
-## 49. Does cloning count as contribution?
-
-No.
-Creating a repository **does** count.
+```bash
+git config --global user.name "Your Name"
+```
 
 ---
 
-## 50. Clone vs Download ZIP?
+### 72. Set email?
 
-- **Clone** → full Git history + collaboration
-- **ZIP** → one-time snapshot, no Git
+```bash
+git config --global user.email "you@email.com"
+```
+
+---
+
+### 73. Check config?
+
+```bash
+git config --list
+```
 
 ---
 
-## 51. One-line summary of Git?
+### 74. List tracked files?
 
-**Git is a distributed database of snapshots connected by pointers.**
+```bash
+git ls-files
+```
 
 ---
+
+### 75. Remove Git entirely?
+
+```bash
+rm .git -Recurse -Force
+```
+
+---
+
+## 📌 Advanced Concepts
+
+### 76. Does cloning count as contribution?
+
+❌ No.
+
+---
+
+### 77. What counts as GitHub contribution?
+
+* Commits
+* Creating a repository
+
+---
+
+### 78. When is contribution time counted?
+
+Commit time, not push time.
+
+---
+
+### 79. Can you undo without deleting history?
+
+Yes, using `git revert`.
+
+---
+
+### 80. What is reflog?
+
+A local history of HEAD movements.
+
+---
+
+### 81. Are commits immutable?
+
+Yes. New commits reference old ones.
+
+---
+
+### 82. Why is Git secure?
+
+SHA-1 hashes form a linked history.
+
+---
+
+### 83. What happens if server dies?
+
+Nothing — Git is distributed.
+
+---
+
+### 84. Why Git is fast?
+
+Local operations + object reuse.
+
+---
+
+### 85. Can Git work offline?
+
+Yes.
+
+---
+
+### 86. Does Git store diffs?
+
+No — full snapshots.
+
+---
+
+### 87. Why staging area exists?
+
+For controlled commits.
+
+---
+
+### 88. Can one commit have multiple parents?
+
+Yes — merge commits.
+
+---
+
+### 89. What is detached HEAD?
+
+HEAD pointing directly to a commit.
+
+---
+
+### 90. How to tag a release?
+
+```bash
+git tag -a v1.0 -m "release"
+```
+
+---
+
+## 🧠 Final Interview-Level Knowledge
+
+### 91. Git = database of?
+
+Objects + pointers.
+
+---
+
+### 92. Most dangerous command?
+
+```bash
+git reset --hard
+```
+
+---
+
+### 93. Safest undo command?
+
+```bash
+git revert
+```
+
+---
+
+### 94. Best practice before pull?
+
+```bash
+git fetch
+```
+
+---
+
+### 95. Best practice before merge?
+
+Commit first.
+
+---
+
+### 96. Can branches be deleted safely?
+
+Yes, after merge.
+
+---
+
+### 97. Why feature branches?
+
+Isolation + safety.
+
+---
+
+### 98. Why PRs matter?
+
+Code review + collaboration.
+
+---
+
+### 99. What makes Git interview-ready?
+
+Understanding internals, not commands.
+
+---
+
+### 100. One-line Git definition?
+
+**Git is a distributed database of snapshots connected by cryptographic pointers.**
+
+---
+
+
+
+Just tell me.
